@@ -25,22 +25,27 @@ def main():
 
     owner, project = remote.split(":")[1].split("/")[-2:]
 
-    # Create a branch named `kaizen` and erase any existing branch
-    branch = repo.create_head("kaizen", force=True)
+    branch_name = "kaizen"
+
+    current_branch = repo.active_branch.name
+
+    # Create a branch named `branch_name` and erase any existing branch
+    branch = repo.create_head(branch_name, force=True)
     branch.checkout()
 
     # Make the most meaningful changes
     # TBD
-    pr_title = "[kaizen]: Improvements"
+    pr_title = "Improvements"
     commit_msg = "Improvements"
 
     # Commit the changes
-    repo.index.commit("Kaizen changes")
+    repo.index.commit(commit_msg)
 
     # Force push the changes
     repo.git.push("origin", branch, force=True)
 
     # Create a PR
-    gh = github.GitHub()
-    gh.create_pr(owner, project, pr_title, commit_msg)
+    gh = github.Github()
+    gh_repo = gh.get_repo(f"{owner}/{project}")
+    gh_repo.create_pull(title=pr_title, head=branch_name, base=current_branch, body=commit_msg)
     print("PR created successfully.")
