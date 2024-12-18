@@ -13,6 +13,11 @@ def main():
     """
     Run in a Git context for a GitHub project and pushes
     a PR for the most meaningful changes.
+    
+    This function checks if the current directory is a Git repository and if the remote is a GitHub project. It creates a new branch, applies changes, and pushes a pull request.
+    
+    Raises:
+        SystemExit: If not in a git context or not a GitHub project.
     """
 
     # Check if we are in a git context
