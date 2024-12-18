@@ -42,7 +42,7 @@ def main():
     ).load()
 
     prompt = ChatPromptTemplate.from_messages(
-        [("system", "Suggest a small, yet concrete improvement that should be performed on the following repository (focus on the code, docs, quality, not menial details like .gitignore):\\n\\n{context}")]
+        [("system", "Suggest a small, yet concrete improvement that should be performed in the following repository. Focus on the code, docs, quality, not menial details like .gitignore. Provide the list of file paths of files that need to be changed and a brief description of the suggested changes. Here is the repo:\\n\\n{context}")]
     )
     llm = ChatOpenAI(model="gpt-4o-mini")
     chain = create_stuff_documents_chain(llm, prompt)
