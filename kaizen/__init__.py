@@ -75,8 +75,8 @@ def main():
     # Create a PR
     gh = github.Github(os.getenv("GITHUB_TOKEN"))
     gh_repo = gh.get_repo(f"{owner}/{project}")
-    gh_repo.create_pull(title=pr_title, head=branch_name, base=current_branch, body=commit_msg)
-    print("PR created successfully.")
+    gh_repo.create_pull(title=pr_title, head=branch_name, base=current_branch, body=commit_msg, labels=["kaizen"])
+    print("\nPR created successfully.")
 
     # restore the original branch
     repo.git.checkout(current_branch)

@@ -1,2 +1,4 @@
+# We do *not* want to commit poetry.lock
 poetry.lock
+# We do *not* want to commit the __pycache__ directory
 kaizen/__pycache__
