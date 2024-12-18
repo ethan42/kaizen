@@ -46,6 +46,11 @@ def main():
     pr_title = result["result"]
     commit_msg = result["result"]
 
+    # Added a check for empty commit messages
+    if not commit_msg.strip():
+        print("Commit message cannot be empty. Exiting.")
+        sys.exit(1)
+
     # Add all changes
     repo.git.add(".")
 
@@ -63,8 +68,3 @@ def main():
 
     # restore the original branch
     repo.git.checkout(current_branch)
-
-    # Added a check for empty commit messages
-    if not commit_msg.strip():
-        print("Commit message cannot be empty. Exiting.")
-        sys.exit(1)
