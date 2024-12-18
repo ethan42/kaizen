@@ -45,7 +45,10 @@ def main():
     repo.git.push("origin", branch, force=True)
 
     # Create a PR
-    gh = github.Github()
+    gh = github.Github(os.getenv("GITHUB_TOKEN"))
     gh_repo = gh.get_repo(f"{owner}/{project}")
     gh_repo.create_pull(title=pr_title, head=branch_name, base=current_branch, body=commit_msg)
     print("PR created successfully.")
+
+    # restore the original branch
+    repo.git.checkout(current_branch)

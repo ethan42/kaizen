@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 gitpython = "^3.1.43"
 pygithub = "^2.5.0"
+neurosymbolic = "0.1.6"
 
 
 [build-system]
