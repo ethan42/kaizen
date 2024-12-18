@@ -42,7 +42,7 @@ def main():
     ).load()
 
     prompt = ChatPromptTemplate.from_messages(
-        [("system", "Suggest a small, yet concrete improvement that should be performed on the following repository:\\n\\n{context}")]
+        [("system", "Suggest a small, yet concrete improvement that should be performed on the following repository (focus on the code, docs, quality, not menial details like .gitignore):\\n\\n{context}")]
     )
     llm = ChatOpenAI(model="gpt-4o-mini")
     chain = create_stuff_documents_chain(llm, prompt)
@@ -75,8 +75,8 @@ def main():
     # Create a PR
     gh = github.Github(os.getenv("GITHUB_TOKEN"))
     gh_repo = gh.get_repo(f"{owner}/{project}")
-    gh_repo.create_pull(title=pr_title, head=branch_name, base=current_branch, body=commit_msg, labels=["kaizen"])
-    print("\nPR created successfully.")
+    pull = gh_repo.create_pull(title=pr_title, head=branch_name, base=current_branch, body=commit_msg)
+    print("\nPR created successfully, %s.", pull.html_url)
 
     # restore the original branch
     repo.git.checkout(current_branch)
