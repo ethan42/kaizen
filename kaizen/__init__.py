@@ -39,7 +39,7 @@ def main():
     git_doc_repo = GitLoader(
         repo_path=".",
         branch=current_branch
-    ).load()
+    ).lazy_load()
 
     prompt = ChatPromptTemplate.from_messages(
         [("system", "Suggest a small, yet concrete improvement that should be performed in the following repository. Focus on the code, docs, quality, not menial details like .gitignore. Provide the list of file paths of files that need to be changed (use the git repository metadata you are given to figure out file paths, don't guess) and a brief description of the suggested changes. Here is the repo:\\n\\n{context}")]
