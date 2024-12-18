@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import git
@@ -55,11 +56,12 @@ def main():
     branch = repo.create_head(branch_name, force=True)
     branch.checkout()
 
-    tools = [ReadFileTool(), WriteFileTool()]
+    tools = [ReadFileTool(verbose=True), WriteFileTool(verbose=True)]
     result, _ = compute("I need you to perform modifications on the local git repository." + improvements + "\n\nReturn a title (very short) for the Pull Request describing the changes.", tools)
 
-    pr_title = result
-    commit_msg = result
+    result = json.loads(result)
+    pr_title = result["result"]
+    commit_msg = result["result"]
 
     # Add all changes
     repo.git.add(".")
