@@ -1,7 +1,15 @@
+import os
 import sys
 import git
 import github
 
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+from langchain_community.document_loaders import GitLoader
+
+from neurosymbolic import compute
+from langchain_community.tools import ReadFileTool, WriteFileTool
 
 
 def main():
@@ -24,21 +32,39 @@ def main():
         sys.exit(1)
 
     owner, project = remote.split(":")[1].split("/")[-2:]
+    current_branch = repo.active_branch.name
+
+    # Decide what the most meaningful changes are
+    git_doc_repo = GitLoader(
+        repo_path=".",
+        branch=current_branch
+    ).load()
+
+    prompt = ChatPromptTemplate.from_messages(
+        [("system", "Suggest a small, yet concrete improvement that should be performed on the following repository:\\n\\n{context}")]
+    )
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    chain = create_stuff_documents_chain(llm, prompt)
+    improvements = chain.invoke({"context": git_doc_repo})
+
+    print("Improvements:", improvements)
 
     branch_name = "kaizen"
-
-    current_branch = repo.active_branch.name
 
     # Create a branch named `branch_name` and erase any existing branch
     branch = repo.create_head(branch_name, force=True)
     branch.checkout()
 
-    # Make the most meaningful changes
-    # TBD
-    pr_title = "Improvements"
-    commit_msg = "Improvements"
+    tools = [ReadFileTool(), WriteFileTool()]
+    result, _ = compute("I need you to perform modifications on the local git repository." + improvements + "\n\nReturn a title (very short) for the Pull Request describing the changes.", tools)
 
-    # Commit the changes
+    pr_title = result
+    commit_msg = result
+
+    # Add all changes
+    repo.git.add(".")
+
+    # Commit the changes for all files changed
     repo.index.commit(commit_msg)
 
     # Force push the changes
