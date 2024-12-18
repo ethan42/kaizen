@@ -1,2 +1,12 @@
-poetry.lock
-kaizen/__pycache__
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp

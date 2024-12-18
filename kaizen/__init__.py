@@ -19,6 +19,14 @@ def main():
     a PR for the most meaningful changes.
     """
 
+    if os.getenv("OPENAI_API_KEY") is None:
+        print("Please set the OPENAI_API_KEY environment variable.")
+        sys.exit(1)
+
+    if os.getenv("GITHUB_TOKEN") is None:
+        print("Please set the GITHUB_TOKEN environment variable.")
+        sys.exit(1)
+
     # Check if we are in a git context
     try:
         repo = git.Repo(search_parent_directories=True)
