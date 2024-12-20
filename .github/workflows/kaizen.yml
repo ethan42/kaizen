@@ -19,7 +19,7 @@ jobs:
     - name: Echo hello
       run: echo hello
 
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@3fddbee7870211eda9047db10474808be43c71ec
       with:
         python-version: '3.13'
 
