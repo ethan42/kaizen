@@ -1,3 +1,5 @@
+name: Kaizen
+
 on:
   schedule:
     - cron: "*/5 * * * *"
