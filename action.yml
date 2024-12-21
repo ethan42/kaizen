@@ -14,7 +14,7 @@ inputs:
     default: '0.1.0'
 runs:
   using: 'docker'
-  image: 'ghcr.io/ethan42/kaizen:0.1.0'
+  image: 'docker://ghcr.io/ethan42/kaizen:0.1.0'
 branding:
   icon: "zap"
   color: "red"
