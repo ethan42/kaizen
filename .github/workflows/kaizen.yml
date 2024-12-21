@@ -1,4 +1,4 @@
-name: Kaizen
+name: kaizen
 
 on:
   workflow_dispatch:
@@ -14,12 +14,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Echo hello
-      run: echo hello
-
-    - uses: actions/setup-python@3fddbee7870211eda9047db10474808be43c71ec
+    - name: Run kaizen
+      uses: ethan42/kaizen@main
       with:
-        python-version: '3.13'
-
-    - name: List files
-      run: ls -altr .
+        openai-api-token: ${{ secrets.OPENAI_API_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        version: '0.1.0'

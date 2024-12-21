@@ -8,9 +8,13 @@ inputs:
     description: GitHub token for creating PRs
     required: false
     default: ${{ github.token }}
+  version:
+    description: Version of the package
+    required: true
+    default: '0.1.0'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'ghcr.io/ethan42/kaizen:${{ inputs.version }}'
 branding:
   icon: "zap"
   color: "red"
