@@ -20,4 +20,3 @@ jobs:
       with:
         openai-api-token: ${{ secrets.OPENAI_API_TOKEN }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        version: '0.1.2'
