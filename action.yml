@@ -8,13 +8,12 @@ inputs:
     description: GitHub token for creating PRs
     required: false
     default: ${{ github.token }}
-  version:
-    description: Version of the package
-    required: true
-    default: '0.1.2'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/ethan42/kaizen:${{ inputs.version }}'
+  image: 'docker://ghcr.io/ethan42/kaizen:0.1.2'
+  env:
+    OPENAI_API_TOKEN: ${{ secrets.openai-api-token }}
+    GITHUB_TOKEN: ${{ secrets.github-token }}
 branding:
   icon: "zap"
   color: "red"

@@ -1,4 +1,4 @@
-name: kaizen
+name: Kaizen
 
 on:
   workflow_dispatch:
