@@ -22,7 +22,7 @@ def main():
 
     # Check if we are in a git context
     try:
-        repo = git.Repo(search_parent_directories=True)
+        repo = git.Repo(search_parent_directories=False)
     except git.exc.InvalidGitRepositoryError:
         print("Not in a git context. Exiting.")
         sys.exit(1)
@@ -39,14 +39,13 @@ def main():
     current_branch = repo.active_branch.name
 
     # Check if there exists a git configured user globally
-    try:
-        if not repo.config_reader().has_option("user", "name"):
-            # configure it
-            print("No global git user found. Configuring it.")
-            repo.git.config("--global", "user.name", "kaizenbot42")
-            repo.git.config("--global", "user.email", "kaizenbot42@youcanthankmelater.com")
-    except Exception as exn:
-        print("Error configuring git user:", exn)
+    if not repo.config_reader().has_option("user", "name"):
+        # configure it
+        print("No global git user found. Configuring it.")
+        repo.git.config("--global", "user.name", "kaizenbot42")
+        repo.git.config("--global", "user.email", "kaizenbot42@youcanthankmelater.com")
+        # set the current directory as safe
+        repo.git.config("--global", "safe.directory", os.getcwd())
 
     branch_name = "kaizen"
 
