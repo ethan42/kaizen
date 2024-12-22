@@ -29,6 +29,8 @@ def main():
 
     # Get the remote GitHub URL
     remote = repo.remote().url
+    print("Remote:", remote)
+    print("Current contents: ", os.listdir())
     if not remote.startswith("git@github.com:"):
         print("Not a GitHub project. Exiting.")
         sys.exit(1)
