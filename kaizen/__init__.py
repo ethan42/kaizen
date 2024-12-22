@@ -13,9 +13,9 @@ def main():
     """
     Run in a Git context for a GitHub project and pushes
     a PR for the most meaningful changes.
-    
+
     This function checks if the current directory is a Git repository and if the remote is a GitHub project. It creates a new branch, applies changes, and pushes a pull request.
-    
+
     Raises:
         SystemExit: If not in a git context or not a GitHub project.
     """
@@ -35,6 +35,14 @@ def main():
 
     owner, project = remote.split(":")[1].split("/")[-2:]
     current_branch = repo.active_branch.name
+
+    # Check if there exists a git-configured user
+    if not repo.config_reader().has_option("user", "name"):
+        # Let's set the user name and email
+        username = "kaizenbot42"
+        email = "kaizenbot42@thankmelater.com"
+        repo.config_writer().set_value("user", "name", username)
+        repo.config_writer().set_value("user", "email", email)
 
     branch_name = "kaizen"
 

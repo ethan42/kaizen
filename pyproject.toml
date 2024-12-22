@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kaizen"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["Thanassis Avgerinos <thanassis.avgerinos@gmail.com>"]
 readme = "README.md"

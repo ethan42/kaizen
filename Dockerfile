@@ -13,4 +13,4 @@ COPY . /app
 
 RUN poetry install --no-dev
 
-CMD ["poetry", "run", "main"]
+CMD ["poetry", "run", "-C", "/app", "main"]
