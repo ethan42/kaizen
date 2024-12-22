@@ -31,7 +31,7 @@ def main():
     remote = repo.remote().url
     print("Remote:", remote)
     print("Current contents: ", os.listdir())
-    if not remote.startswith("git@github.com:"):
+    if not remote.startswith("git@github.com:") and not remote.startswith("https://github.com/"):
         print("Not a GitHub project. Exiting.")
         sys.exit(1)
 
