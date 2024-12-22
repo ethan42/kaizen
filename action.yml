@@ -10,7 +10,7 @@ inputs:
     default: ${{ github.token }}
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/ethan42/kaizen:0.1.5'
+  image: 'docker://ghcr.io/ethan42/kaizen:0.1.6'
   env:
     OPENAI_API_TOKEN: ${{ inputs.openai-api-token }}
     GITHUB_TOKEN: ${{ inputs.github-token }}

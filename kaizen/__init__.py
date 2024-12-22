@@ -38,13 +38,12 @@ def main():
     owner, project = remote.split(":")[1].split("/")[-2:]
     current_branch = repo.active_branch.name
 
-    # Check if there exists a git-configured user
-    if not repo.config_reader().has_option("user", "name"):
-        # Let's set the user name and email
-        username = "kaizenbot42"
-        email = "kaizenbot42@thankmelater.com"
-        repo.config_writer().set_value("user", "name", username)
-        repo.config_writer().set_value("user", "email", email)
+    # Check if there exists a git configured user globally
+    if not repo.git.config("user.name"):
+        # configure it
+        print("No global git user found. Configuring it.")
+        repo.git.config("--global", "user.name", "kaizenbot42")
+        repo.git.config("--global", "user.email", "kaizenbot42@youcanthankmelater.com")
 
     branch_name = "kaizen"
 
