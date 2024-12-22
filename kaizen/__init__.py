@@ -39,11 +39,14 @@ def main():
     current_branch = repo.active_branch.name
 
     # Check if there exists a git configured user globally
-    if not repo.git.config("user.name"):
-        # configure it
-        print("No global git user found. Configuring it.")
-        repo.git.config("--global", "user.name", "kaizenbot42")
-        repo.git.config("--global", "user.email", "kaizenbot42@youcanthankmelater.com")
+    try:
+        if not repo.config_reader().has_option("user", "name"):
+            # configure it
+            print("No global git user found. Configuring it.")
+            repo.git.config("--global", "user.name", "kaizenbot42")
+            repo.git.config("--global", "user.email", "kaizenbot42@youcanthankmelater.com")
+    except Exception as exn:
+        print("Error configuring git user:", exn)
 
     branch_name = "kaizen"
 
