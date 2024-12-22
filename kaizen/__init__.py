@@ -1,5 +1,6 @@
 import json
 import os
+from subprocess import run
 import sys
 import git
 import github
@@ -44,8 +45,8 @@ def main():
         print("No global git user found. Configuring it.")
         repo.git.config("--global", "user.name", "kaizenbot42")
         repo.git.config("--global", "user.email", "kaizenbot42@youcanthankmelater.com")
-        # set the current directory as safe
-        repo.git.config("--global", "safe.directory", os.getcwd())
+        # set the current directory as safe by running git config --global --add safe.directory /github/workspace
+        run(["git", "config", "--global", "--add", "safe.directory", os.getcwd()])
 
     branch_name = "kaizen"
 
