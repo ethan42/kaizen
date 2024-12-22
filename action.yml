@@ -11,10 +11,10 @@ inputs:
   version:
     description: Version of the package
     required: true
-    default: '0.1.0'
+    default: '0.1.1'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/ethan42/kaizen:0.1.0'
+  image: 'docker://ghcr.io/ethan42/kaizen:${{ inputs.version }}'
 branding:
   icon: "zap"
   color: "red"
