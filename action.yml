@@ -4,16 +4,17 @@ inputs:
   openai-api-token:
     description: Token for using the OpenAI API
     required: true
+    default: ${{ secrets.OPENAI_API_TOKEN }}
   github-token:
     description: GitHub token for creating PRs
-    required: false
+    required: true
     default: ${{ github.token }}
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/ethan42/kaizen:0.1.2'
   env:
-    OPENAI_API_TOKEN: ${{ secrets.openai-api-token }}
-    GITHUB_TOKEN: ${{ secrets.github-token }}
+    OPENAI_API_TOKEN: ${{ inputs.openai-api-token }}
+    GITHUB_TOKEN: ${{ inputs.github-token }}
 branding:
   icon: "zap"
   color: "red"
