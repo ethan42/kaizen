@@ -11,6 +11,6 @@ WORKDIR /app
 
 COPY . /app
 
-RUN poetry install --no-dev
+RUN poetry build && pip install dist/*.whl
 
-CMD ["poetry", "run", "-C", "/app", "main"]
+CMD ["kaizen"]
