@@ -3,9 +3,9 @@
 name: Publish to GHCR
 
 on:
-#   push:
-#     branches:
-#       - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
