@@ -1,10 +1,11 @@
 import json
 import os
-from subprocess import run
 import sys
+import random
 import git
 import github
 
+from subprocess import run
 from neurosymbolic import compute
 from langchain_community.tools import ReadFileTool, WriteFileTool
 from langchain_community.tools import ListDirectoryTool
@@ -54,8 +55,17 @@ def main():
     branch = repo.create_head(branch_name, force=True)
     branch.checkout()
 
-    tools = [ListDirectoryTool(verbose=True), ReadFileTool(verbose=True), WriteFileTool(verbose=True)]
-    result, _ = compute("Your current directory is a git repository. Pick a file from the repository and apply a small, yet concrete and important improvement. Edit the files directly. Focus on the code, docs, quality, not menial details like .gitignore. \n\nFinally return a title (very short) for the Pull Request describing the changes you made.", tools)
+    # Fetch all files in this git repository
+    all_files = []
+    for f in repo.head.commit.tree.traverse():
+        all_files.append(f.path)
+
+    # Choose 5 random files
+    sample = ', '.join('`%s`' % filename for filename in random.sample(all_files, 5))
+
+    tools = [ReadFileTool(verbose=True), WriteFileTool(verbose=True)]
+    prompt = os.getenv("KAIZEN_PROMPT", "Your current directory is a git repository. One of the %s files have to be improved. Pick one of them and apply a concrete and impactful improvement. Edit the file directly. Focus on the code, docs, quality, not menial changes. \n\nFinally return a title (very short) for the Pull Request describing the changes you made.")
+    result, _ = compute(prompt, tools)
 
     print("Result:", result)
 
