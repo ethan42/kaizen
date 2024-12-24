@@ -18,7 +18,7 @@ inputs:
     default: "You are a senior software engineer working on a project. You want to make it better in any way you can. Read and modify the codebase, write documentation, refactor, or anything else that you think will help. You are looking for small, incremental improvements that you can make in a short amount of time. You are not looking for large, time-consuming changes that will take weeks or months to complete. You are looking for small, manageable tasks that you can complete in a few hours or less. You are looking for changes that will have a positive impact on the project and help your team be more productive."
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/ethan42/kaizen:0.1.11'
+  image: 'docker://ghcr.io/ethan42/kaizen:0.1.12'
   env:
     OPENAI_API_KEY: ${{ inputs.openai-api-key }}
     GITHUB_TOKEN: ${{ inputs.github-token }}

@@ -58,6 +58,9 @@ def main():
     # Fetch all files in this git repository
     all_files = []
     for f in repo.head.commit.tree.traverse():
+        # Skip directories
+        if f.type == "tree":
+            continue
         all_files.append(f.path)
 
     # Choose 5 random files
