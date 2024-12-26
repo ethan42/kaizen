@@ -9,9 +9,10 @@ from subprocess import run
 from neurosymbolic import compute
 from langchain_community.tools import ReadFileTool, WriteFileTool
 from langchain_community.tools import ListDirectoryTool
+from typing import NoReturn
 
 
-def main():
+def main() -> NoReturn:
     """
     Run in a Git context for a GitHub project and pushes
     a PR for the most meaningful changes.
