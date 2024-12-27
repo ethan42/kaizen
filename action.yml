@@ -22,7 +22,7 @@ inputs:
     default: "Your current directory is a git repository. One of the %s files has to be improved. Choose one of them and apply a concrete and impactful improvement. Edit the file directly. Focus on the code, docs, quality, not menial changes."
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/ethan42/kaizen:0.1.12'
+  image: 'docker://ghcr.io/ethan42/kaizen:0.1.13'
   env:
     OPENAI_API_KEY: ${{ inputs.openai-api-key }}
     GITHUB_TOKEN: ${{ inputs.github-token }}
