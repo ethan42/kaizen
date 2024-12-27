@@ -1,6 +1,6 @@
 # Kaizen: A Tool for Continuous Improvement
 
-Kaizen is a tool that will automatically suggest improvements to your repository via PRs. Running it has two main requirements:
+[Kaizen](https://en.wikipedia.org/wiki/Kaizen) is a tool that will automatically suggest improvements to your repository via PRs. Running it has two main requirements:
 
 1. An OPENAI_API_KEY token for querying OpenAI's API and fetching suggestions.
 2. A GITHUB_TOKEN with sufficient permissions to allow creating PRs in your repository.
