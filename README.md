@@ -5,6 +5,15 @@ Kaizen is a tool that will automatically suggest improvements to your repository
 1. An OPENAI_API_KEY token for querying OpenAI's API and fetching suggestions.
 2. A GITHUB_TOKEN with sufficient permissions to allow creating PRs in your repository.
 
+## Configuration
+
+Before running Kaizen, you need to configure the following environment variables:
+
+- **OPENAI_API_KEY**: This is your API key for accessing OpenAI's services. You can obtain it from the OpenAI platform.
+- **GITHUB_TOKEN**: This token must have permissions to create pull requests in your repository. You can generate a personal access token from your GitHub account settings.
+
+Set these environment variables in your shell or CI/CD environment to ensure Kaizen can authenticate and perform its tasks.
+
 ## Running Kaizen
 
 ### Through the CLI
@@ -29,7 +38,6 @@ Kaizen is also available as a GitHub action, to enable it in your repo add the f
         github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-
 ## Developing Kaizen
 
 ### Installation
@@ -43,9 +51,6 @@ $ poetry run kaizen
 
 ## Contributions
 
-## License
-## Contributions
-
 We welcome contributions to Kaizen! Please ensure that your contributions adhere to the following guidelines:
 
 1. **Code Quality**: Ensure your code is well-structured and follows the project's coding standards.
@@ -54,3 +59,5 @@ We welcome contributions to Kaizen! Please ensure that your contributions adhere
 4. **Pull Requests**: Submit your changes via pull requests, and ensure they are linked to an issue if applicable.
 
 Thank you for helping us improve Kaizen!
+
+## License
