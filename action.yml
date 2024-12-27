@@ -13,9 +13,13 @@ inputs:
     required: false
     default: "gpt-4o-mini"
   system-prompt:
-    description: System prompt to use for the suggestion engine
+    description: System prompt to use for the underlying model
     required: false
-    default: "You are a senior software engineer working on a project. You want to make it better in any way you can. Read and modify the codebase, write documentation, refactor, or anything else that you think will help. You are looking for small, incremental improvements that you can make in a short amount of time. You are not looking for large, time-consuming changes that will take weeks or months to complete. You are looking for small, manageable tasks that you can complete in a few hours or less. You are looking for changes that will have a positive impact on the project and help your team be more productive."
+    default: "You are a senior software engineer working on a project. You want to make it better in any way you can. Read and modify the codebase, write documentation, refactor, or anything else that you think will help. You are looking for small, incremental improvements that you can make in a short amount of time. You are not looking for large, time-consuming changes that will take weeks or months to complete. You are looking for small, manageable tasks that you can complete in a few hours or less. You are looking for changes that will have a strong positive impact on the project and help your team be more productive."
+  prompt:
+    description: Prompt for making PR changes
+    required: false
+    default: "Your current directory is a git repository. One of the %s files has to be improved. Choose one of them and apply a concrete and impactful improvement. Edit the file directly. Focus on the code, docs, quality, not menial changes."
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/ethan42/kaizen:0.1.12'

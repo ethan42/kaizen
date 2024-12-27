@@ -68,7 +68,8 @@ def main() -> NoReturn:
     sample = ', '.join('`%s`' % filename for filename in random.sample(all_files, 5))
 
     tools = [ReadFileTool(verbose=True), WriteFileTool(verbose=True)]
-    prompt = os.getenv("KAIZEN_PROMPT", "Your current directory is a git repository. One of the %s files have to be improved. Pick one of them and apply a concrete and impactful improvement. Edit the file directly. Focus on the code, docs, quality, not menial changes. \n\nFinally return a title (very short) for the Pull Request describing the changes you made." % sample)
+    base_prompt = "Your current directory is a git repository. One of the %s files has to be improved. Choose one of them and apply a concrete and impactful improvement. Edit the file directly. Focus on the code, docs, quality, not menial changes."
+    prompt = os.getenv("KAIZEN_PROMPT", base_prompt) % sample + "\n\nFinally return a title up to 80 characters for the Pull Request describing the changes you made."
     print("Prompt:", prompt)
     result, _ = compute(prompt, tools)
 
