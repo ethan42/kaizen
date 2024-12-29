@@ -61,3 +61,5 @@ We welcome contributions to Kaizen! Please ensure that your contributions adhere
 Thank you for helping us improve Kaizen!
 
 ## License
+
+MIT
