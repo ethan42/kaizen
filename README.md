@@ -49,6 +49,15 @@ $ poetry install
 $ poetry run kaizen
 ```
 
+## Troubleshooting
+
+If you encounter issues while using Kaizen, consider the following troubleshooting steps:
+
+1. **Authentication Errors**: Ensure that your `OPENAI_API_KEY` and `GITHUB_TOKEN` are correctly set and have the necessary permissions.
+2. **Network Issues**: Check your internet connection and ensure that there are no firewall restrictions blocking access to the required services.
+3. **Version Compatibility**: Make sure you are using compatible versions of dependencies as specified in the `pyproject.toml`.
+4. **Logs and Debugging**: Review the logs for any error messages or warnings that can provide more context on the issue.
+
 ## Contributions
 
 We welcome contributions to Kaizen! Please ensure that your contributions adhere to the following guidelines:
